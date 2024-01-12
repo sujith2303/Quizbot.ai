@@ -16,12 +16,12 @@ This is a sequence to sequence task. We have released three versions of QuizBot.
 ### 2. QuizBot-Base
 ### 3. QuizBot-Large
 </p>
-<p>
+
 As this is a sequence to sequence task with inputs as the context and the instructions and the output is the question and answer based on the instruction provided in the input prompt. We have used [T5](https://arxiv.org/pdf/1910.10683.pdf) model and have fine-tuned the model using the hyperparameters mentioned in the [Config file](config.json) on the [dataset](https://huggingface.co/datasets/Sujithanumala/AI_Interviewer).
-</p>
-<p>
+
+
 The lighter version QuizBot-small is fine-tuned on [T5-small](https://huggingface.co/t5-small) , QuizBot-Base on [T5-base](https://huggingface.co/t5-base) and QuizBot-large on [T5-large](https://huggingface.co/t5-large).Based on the availabilty of the compute resources the user can download the model. 
-</p>
+
 
 <br>
 
