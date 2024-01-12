@@ -27,10 +27,10 @@ The lighter version QuizBot-small is fine-tuned on [T5-small](https://huggingfac
 # Input Format
 
 The input format is very simple. Before directly giving the context follow the input Format as mentioned 
-* Generate Essay Answers  ** *context followed by \n Generate Essay answers .* **
-* Generate MCQS  ** *context followed by \n  Generate MCQS .* **
-* Generate True or False ** *context followed by \n Generate True or False .* **
-* Generate Fill in the blanks ** *context followed by \n Generate FIBs .* **
+* Generate Essay Answers  ***context followed by \n Generate Essay answers .***
+* Generate MCQS  ***context followed by \n  Generate MCQS .***
+* Generate True or False ***context followed by \n Generate True or False .***
+* Generate Fill in the blanks ***context followed by \n Generate FIBs .***
 Note that these were formats used while fine-tuning the model and can be anything.
 
 <br>
