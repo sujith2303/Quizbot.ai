@@ -10,5 +10,10 @@ An extension of this project introduces an <b>AI-based interview system</b>, whe
 # Architecture and Models
 
 
+# Dataset used
+
+This project used a a custom [dataset](https://huggingface.co/datasets/Sujithanumala/AI_Interviewer). We have collected the context from different sources especially used the context from SQuAD_V2 dataset and have generated custom Questions and Custom answers carefully. You can go through the [Create_Dataset](Create_Dataset.py) and can create a custom dataset for your project and train your model.
+
+
 
 (AI Inteviewer and also explain architecture )
