@@ -42,7 +42,7 @@ This project used a a custom [dataset](https://huggingface.co/datasets/Sujithanu
 <br>
 
 # Code
-<p>
-No prior knowledge of Machine learning frameworks like **Pytorch** ,**Tensorflow** ,**Jax** , **HuggingFace**,etc.. are required. Just write 2 lines of code and your QuizBot is ready
-</p>
+
+No prior knowledge of Machine learning frameworks like  **Pytorch**  , **Tensorflow** , **Jax** , **HuggingFace**,etc.. are required. Just write 2 lines of code and your QuizBot is ready.
+
 (AI Inteviewer and also explain architecture )
