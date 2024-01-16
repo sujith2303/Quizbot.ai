@@ -52,7 +52,7 @@ No prior knowledge of Machine learning frameworks like  **Pytorch**  , **Tensorf
 
 # Steps for training and fine-tuning the model
 
-## 1. Choosing the Model 
+## A. Choosing the Model 
 Initially I have tried using the transformer architecture by simply implementing the architecture as mentioned in the [Attention is all you need](https://arxiv.org/pdf/1706.03762.pdf) paper. But inorder to get the benifit of fine-tuning I have used five pre-trained models 
 
 ### 1.T5-small
@@ -71,6 +71,14 @@ The results of Flan-t5-base are comparable as t5-base (since both of them were a
 ### 5.Flan-T5-large
 The same thing happened with the flan-t5-large model also. The t5-large was better compared to flan-t5-large.
 
-## Hyperparameters
+### Hyperparameters
 Full Fine-Tuning (for both the base and small model)
+
 Learning rate :- 5.6e-3 with a decay of 0.01
+
+Tried with smaller learning rates (1e-5,5.6e-5,1e-4,5e-4) but found that intially setting the learning rate high helped the model to converge soon.
+I have choosen the same hyperparameters for all the three models. The base model converged on training 10 epochs over 1000 examples. The large model converged on 30 epochs for 1000 examples.
+
+## B.AutoGrader (Grades the user) 
+Fine-tuned BERT model on [MRPC dataset ](https://huggingface.co/datasets/glue/viewer/mrpc). This dataset has 2 sentences and the output of the model is whether the two sentences mean the same.This way the user's essay answers are graded. Other answers like MCQs ,fill in the blanks and True or False are directly compared and given 1 or 0 score. The score for essay answers is based on the score that the BERT model outputs (the prediction of similarity between two sentences).
+
