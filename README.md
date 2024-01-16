@@ -24,7 +24,7 @@ The lighter version QuizBot-small is fine-tuned on [T5-small](https://huggingfac
 
 <br>
 
-# Input Format
+# Input & Output Format
 
 The input format is very simple. Before directly giving the context follow the input Format as mentioned 
 * Generate Essay Answers  ***context followed by \n Generate Essay answers .***
@@ -33,6 +33,8 @@ The input format is very simple. Before directly giving the context follow the i
 * Generate Fill in the blanks ***context followed by \n Generate FIBs .***
 Note that these were formats used while fine-tuning the model and can be anything.
 
+The output format is as follows
+* For any of the task the output format contains [QUESTION]: tag followed by the question and [ANSWER]: tag followed by the answer. Note these are purely based on experiment. I tried using <Question>: [Question]: tags but the [QUESTION]: tag worked out well. You can try your own when you fine-tune the model.
 <br>
 
 # Dataset used
@@ -46,3 +48,29 @@ This project used a a custom [dataset](https://huggingface.co/datasets/Sujithanu
 No prior knowledge of Machine learning frameworks like  **Pytorch**  , **Tensorflow** , **Jax** , **HuggingFace**,etc.. are required. Just write 2 lines of code and your QuizBot is ready.
 
 (AI Inteviewer and also explain architecture )
+
+
+# Steps for training and fine-tuning the model
+
+## 1. Choosing the Model 
+Initially I have tried using the transformer architecture by simply implementing the architecture as mentioned in the [Attention is all you need](https://arxiv.org/pdf/1706.03762.pdf) paper. But inorder to get the benifit of fine-tuning I have used five pre-trained models 
+
+### 1.T5-small
+[T5- small](https://huggingface.co/t5-small) was just 60.5M parameters and very easy to load(just 242 MB) and easy to train and in few epochs it achieved a very less loss over both training and test data but the results when tested were worst. It just outputted [QUESTION]: and [ANSWER]: and some random text. I think the loss was less because it was able to correctly output [QUESTION] AND [ANSWER] and masks for fill in the blanks but were meaning less. The reason was clear because the model didn't have a very good language understanding.
+### 2.T5-base
+I attempted to train the [T5-base](https://huggingface.co/t5-base) model which had 223M parameters, and it exhibited a slow training process, taking up around 892MB of memory. Despite the initial time investment, the model demonstrated a strong grasp of language, leading to promising results after just a few epochs. The model effectively recognized patterns in question formats, such as multiple-choice questions with four options and the requirement to output the correct one. It also performed well in tasks like filling in the blanks with meaningful words. However, the validation loss increased over epochs, primarily due to the limited size of the dataset. The understanding improved significantly by expanding the dataset size.
+### 3.T5-large
+Finally, I experimented with the [large model](https://huggingface.co/t5-large), which boasts a significantly better understanding compared to the T5-base and requires approximately 3GB to load and had 738M parameters. While this model yielded superior results, there were both advantages and disadvantages.
+
+The model's strength lies in its enhanced comprehension, surpassing that of the T5-base. However, a major drawback surfaced when attempting direct fine-tuning—out-of-memory issues were inevitable due to its substantial size, featuring 24 hidden layers in both encoder and decoder and 12 attention heads. To address this, I opted for the PEFT (Prompt-Enhanced Fine-Tuning) approach, which successfully prevented out-of-memory errors but extended the training time approximately tenfold compared to the base version.
+
+Despite achieving satisfactory results, the large model fell short of its full potential. The dataset proved insufficient for such a massive model, requiring at least 20 times the parameters for optimal performance (read [chinchilla](https://arxiv.org/pdf/2203.15556.pdf) paper for more details). Given that I was fine-tuning with randomly initialized PEFT parameters, increasing the dataset size did enhance accuracy, but the training time also escalated considerably. The batch size was constrained to 4 due to memory constraints, and attempts to increase it resulted in out-of-memory errors. To mitigate GPU out-of-memory issues, I adjusted the GPU utilization fraction to 0.75, providing some relief but still necessitating a batch size of 4. In conclusion, while the large model exhibited performance on par with the T5-base, realizing its full potential demands ample data and extensive training.
+
+### 4.Flan-T5-base
+The results of Flan-t5-base are comparable as t5-base (since both of them were almost same) but t5-base worked well for this scenario.
+### 5.Flan-T5-large
+The same thing happened with the flan-t5-large model also. The t5-large was better compared to flan-t5-large.
+
+## Hyperparameters
+Full Fine-Tuning (for both the base and small model)
+Learning rate :- 5.6e-3 with a decay of 0.01
