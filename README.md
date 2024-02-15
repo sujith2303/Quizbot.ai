@@ -39,7 +39,7 @@ The output format is as follows
 
 # Dataset used
 
-This project used a custom [dataset](https://huggingface.co/datasets/Sujithanumala/AI_Interviewer). We have collected the context from different sources especially using the context from the SQuAD_V2 dataset and have generated custom Questions and Custom answers carefully. You can go through the [Create_Dataset](Create_Dataset.py) and create a custom dataset for your project and train your model.
+This project used a custom [dataset](https://huggingface.co/datasets/Sujithanumala/AI_Interviewer). We have collected the context from different sources especially using the context from the SQuAD_V2 dataset and have generated custom Questions and Custom answers carefully. You can go through the [Create_Dataset](Create_Dataset.ipynb) and create a custom dataset for your project and train your model.
 
 **Data Creation part**
 Data was carefully prepared because it affects a lot the model's performance. I have used synthetic data to create the dataset. The split goes this way
